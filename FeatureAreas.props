@@ -21,8 +21,8 @@
     <FeatureFlipViewEnabled>false</FeatureFlipViewEnabled>
     <FeatureIconSourceEnabled>productOnly</FeatureIconSourceEnabled>
     <FeatureInteractionsEnabled>false</FeatureInteractionsEnabled>
-    <FeatureLayoutPanelEnabled>false</FeatureLayoutPanelEnabled>
-    <FeatureRepeaterEnabled>false</FeatureRepeaterEnabled>
+    <FeatureLayoutPanelEnabled>true</FeatureLayoutPanelEnabled>
+    <FeatureRepeaterEnabled>true</FeatureRepeaterEnabled>
     <FeatureMenuBarEnabled>false</FeatureMenuBarEnabled>
     <FeatureMenuFlyoutEnabled>false</FeatureMenuFlyoutEnabled>
     <FeatureNavigationViewEnabled>false</FeatureNavigationViewEnabled>
@@ -30,15 +30,16 @@
     <FeaturePersonPictureEnabled>false</FeaturePersonPictureEnabled>
     <FeaturePivotEnabled>false</FeaturePivotEnabled>
     <FeaturePullToRefreshEnabled>false</FeaturePullToRefreshEnabled>
-    <FeatureRadioButtonsEnabled>false</FeatureRadioButtonsEnabled>
+    <FeatureRadioButtonsEnabled>true</FeatureRadioButtonsEnabled>
     <FeatureRadioMenuFlyoutItemEnabled>false</FeatureRadioMenuFlyoutItemEnabled>
     <FeatureRatingControlEnabled>false</FeatureRatingControlEnabled>
-    <FeatureScrollBarEnabled>false</FeatureScrollBarEnabled>
-    <FeatureScrollerEnabled>false</FeatureScrollerEnabled>
-    <FeatureScrollViewerEnabled>false</FeatureScrollViewerEnabled>
+    <FeatureScrollBarEnabled>true</FeatureScrollBarEnabled>
+    <FeatureScrollerEnabled>true</FeatureScrollerEnabled>
+    <FeatureScrollViewerEnabled>true</FeatureScrollViewerEnabled>
     <FeatureSliderEnabled>false</FeatureSliderEnabled>
     <FeatureSplitButtonEnabled>productOnly</FeatureSplitButtonEnabled>
     <FeatureSwipeControlEnabled>false</FeatureSwipeControlEnabled>
+    <FeatureTabViewEnabled>false</FeatureTabViewEnabled>
     <FeatureTeachingTipEnabled>false</FeatureTeachingTipEnabled>
     <FeatureTimePickerEnabled>false</FeatureTimePickerEnabled>
     <FeatureToolTipEnabled>false</FeatureToolTipEnabled>
