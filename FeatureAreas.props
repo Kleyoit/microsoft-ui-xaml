@@ -9,7 +9,7 @@
     <FeatureResourceHelperEnabled>productOnly</FeatureResourceHelperEnabled>
     <FeatureCollectionsEnabled>productOnly</FeatureCollectionsEnabled>
     <FeatureColorPickerEnabled>false</FeatureColorPickerEnabled>
-    <FeatureTabViewEnabled>true</FeatureTabViewEnabled>
+    <FeatureTabViewEnabled>false</FeatureTabViewEnabled>
     <FeatureAnimatedVisualPlayerEnabled>false</FeatureAnimatedVisualPlayerEnabled>
     <FeatureAutoSuggestBoxEnabled>false</FeatureAutoSuggestBoxEnabled>
     <FeatureCalendarDatePickerEnabled>false</FeatureCalendarDatePickerEnabled>
@@ -21,8 +21,8 @@
     <FeatureFlipViewEnabled>false</FeatureFlipViewEnabled>
     <FeatureIconSourceEnabled>productOnly</FeatureIconSourceEnabled>
     <FeatureInteractionsEnabled>false</FeatureInteractionsEnabled>
-    <FeatureLayoutPanelEnabled>true</FeatureLayoutPanelEnabled>
-    <FeatureRepeaterEnabled>true</FeatureRepeaterEnabled>
+    <FeatureLayoutPanelEnabled>false</FeatureLayoutPanelEnabled>
+    <FeatureRepeaterEnabled>productOnly</FeatureRepeaterEnabled>
     <FeatureMenuBarEnabled>false</FeatureMenuBarEnabled>
     <FeatureMenuFlyoutEnabled>false</FeatureMenuFlyoutEnabled>
     <FeatureNavigationViewEnabled>false</FeatureNavigationViewEnabled>
@@ -33,11 +33,11 @@
     <FeatureRadioButtonsEnabled>true</FeatureRadioButtonsEnabled>
     <FeatureRadioMenuFlyoutItemEnabled>false</FeatureRadioMenuFlyoutItemEnabled>
     <FeatureRatingControlEnabled>false</FeatureRatingControlEnabled>
-    <FeatureScrollBarEnabled>true</FeatureScrollBarEnabled>
-    <FeatureScrollerEnabled>true</FeatureScrollerEnabled>
-    <FeatureScrollViewerEnabled>true</FeatureScrollViewerEnabled>
+    <FeatureScrollBarEnabled>false</FeatureScrollBarEnabled>
+    <FeatureScrollerEnabled>false</FeatureScrollerEnabled>
+    <FeatureScrollViewerEnabled>false</FeatureScrollViewerEnabled>
     <FeatureSliderEnabled>false</FeatureSliderEnabled>
-    <FeatureSplitButtonEnabled>productOnly</FeatureSplitButtonEnabled>
+    <FeatureSplitButtonEnabled>false</FeatureSplitButtonEnabled>
     <FeatureSwipeControlEnabled>false</FeatureSwipeControlEnabled>
     <FeatureTabViewEnabled>false</FeatureTabViewEnabled>
     <FeatureTeachingTipEnabled>false</FeatureTeachingTipEnabled>
