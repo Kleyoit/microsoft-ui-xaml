@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 #include <pch.h>
@@ -501,13 +501,14 @@ void ItemsRepeater::OnDataSourcePropertyChanged(const winrt::ItemsSourceView& ol
     {
         throw winrt::hresult_error(E_FAIL, L"Cannot set ItemsSourceView during layout.");
     }
-
-    m_itemsSourceView.set(newValue);
-
     if (oldValue)
     {
         m_itemsSourceViewChanged.revoke();
     }
+
+    m_itemsSourceView.set(newValue);
+
+   
 
     if (newValue)
     {
@@ -708,7 +709,7 @@ void ItemsRepeater::OnItemsSourceViewChanged(const winrt::IInspectable& sender, 
 
     if (auto layout = Layout())
     {
-        if (auto virtualLayout = layout.as<winrt::VirtualizingLayout>())
+        if (auto virtualLayout = layout.try_as<winrt::VirtualizingLayout>())
         {
             virtualLayout.OnItemsChangedCore(GetLayoutContext(), sender, args);
         }

@@ -14,19 +14,21 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(MSBuildThisFileDirectory)RadioButtonsListView.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)RadioButtonsListViewItem.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Generated\ColumnMajorUniformToLargestGridLayout.properties.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ColumnMajorUniformToLargestGridLayout.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)RadioButtonsElementFactory.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)RadioButtonsListViewItemAutomationPeer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)RadioButtons.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)..\Generated\RadioButtons.properties.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)RadioButtonsListView.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)RadioButtonsListViewItem.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\Generated\ColumnMajorUniformToLargestGridLayout.properties.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ColumnMajorUniformToLargestGridLayout.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)RadioButtonsElementFactory.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)RadioButtonsListViewItemAutomationPeer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\Generated\RadioButtons.properties.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)RadioButtons.cpp" />
   </ItemGroup>
-  <ItemGroup >
+  <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)RadioButtons.xaml">
       <Version>RS1</Version>
       <Type>DefaultStyle</Type>
@@ -38,10 +40,6 @@
     <Page Include="$(MSBuildThisFileDirectory)RadioButton.xaml">
       <Version>RS1</Version>
       <Type>DefaultStyle</Type>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)RadioButton_themeresources.xaml">
-      <Version>RS1</Version>
-      <Type>ThemeResources</Type>
     </Page>
   </ItemGroup>
   <ItemGroup>

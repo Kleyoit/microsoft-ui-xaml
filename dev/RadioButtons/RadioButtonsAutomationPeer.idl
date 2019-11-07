@@ -1,11 +1,11 @@
-namespace MU_XAP_NAMESPACE
+﻿namespace MU_XAP_NAMESPACE
 {
 
 [WUXC_VERSION_PREVIEW]
 [webhosthidden]
-unsealed runtimeclass RadioButtonsListViewItemAutomationPeer : Windows.UI.Xaml.Automation.Peers.ListViewItemAutomationPeer
+unsealed runtimeclass RadioButtonsListViewItemAutomationPeer : Windows.UI.Xaml.Automation.Peers.FrameworkElementAutomationPeer
 {
-    RadioButtonsListViewItemAutomationPeer(MU_XCP_NAMESPACE.RadioButtonsListViewItem owner);
+    RadioButtonsListViewItemAutomationPeer(Windows.UI.Xaml.FrameworkElement owner);
 }
 
 }

@@ -37,7 +37,7 @@
     <FeatureScrollerEnabled>false</FeatureScrollerEnabled>
     <FeatureScrollViewerEnabled>false</FeatureScrollViewerEnabled>
     <FeatureSliderEnabled>false</FeatureSliderEnabled>
-    <FeatureSplitButtonEnabled>false</FeatureSplitButtonEnabled>
+    <FeatureSplitButtonEnabled>productOnly</FeatureSplitButtonEnabled>
     <FeatureSwipeControlEnabled>false</FeatureSwipeControlEnabled>
     <FeatureTabViewEnabled>false</FeatureTabViewEnabled>
     <FeatureTeachingTipEnabled>false</FeatureTeachingTipEnabled>

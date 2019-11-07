@@ -5,11 +5,10 @@
 #include "common.h"
 #include "ResourceAccessor.h"
 #include "RadioButtonsListViewItemAutomationPeer.h"
-#include "RadioButtonsListViewItem.h"
 
 CppWinRTActivatableClassWithBasicFactory(RadioButtonsListViewItemAutomationPeer);
 
-RadioButtonsListViewItemAutomationPeer::RadioButtonsListViewItemAutomationPeer(winrt::RadioButtonsListViewItem const& owner) :
+RadioButtonsListViewItemAutomationPeer::RadioButtonsListViewItemAutomationPeer(winrt::FrameworkElement const& owner) :
     ReferenceTracker(owner)
 {
 }

@@ -3,7 +3,6 @@
 
 #pragma once
 
-#include "RadioButtonsListViewItem.h"
 #include "RadioButtonsListViewItemAutomationPeer.g.h"
 
 class RadioButtonsListViewItemAutomationPeer :
@@ -12,7 +11,7 @@ class RadioButtonsListViewItemAutomationPeer :
         winrt::implementation::RadioButtonsListViewItemAutomationPeerT>
 {
 public:
-    RadioButtonsListViewItemAutomationPeer(winrt::RadioButtonsListViewItem const& owner);
+    RadioButtonsListViewItemAutomationPeer(winrt::FrameworkElement const& owner);
 
     // IAutomationPeerOverrides 
     winrt::AutomationControlType GetAutomationControlTypeCore();
