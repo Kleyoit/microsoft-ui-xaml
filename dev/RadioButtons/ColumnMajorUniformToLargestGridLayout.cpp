@@ -31,11 +31,15 @@ winrt::Size ColumnMajorUniformToLargestGridLayout::MeasureOverride(
         }
         auto const largestChildSize = LargestChildSize(context);
 
+        auto const actualColumnCount = static_cast<float>(std::min(
+            static_cast<double>(maxColumns),
+            static_cast<double>(children.Size())));
         return winrt::Size(
-            largestChildSize.Width * static_cast<float>(std::min(
-                static_cast<double>(maxColumns),
-                static_cast<double>(children.Size()))),
-            largestChildSize.Height * maxItemsPerColumn);
+            (largestChildSize.Width * actualColumnCount) + 
+            (ColumnSpacing() * (actualColumnCount - 1)),
+            (largestChildSize.Height * maxItemsPerColumn) +
+            (RowSpacing() * (maxItemsPerColumn - 1))
+        );
     }
     return winrt::Size(0, 0);
 }
