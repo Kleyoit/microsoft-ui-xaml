@@ -526,6 +526,12 @@ void ItemsRepeater::OnDataSourcePropertyChanged(const winrt::ItemsSourceView& ol
                 -1 /* newIndex */,
                 -1 /* oldIndex */);
             args.Action();
+            m_processingItemsSourceChange.set(args);
+            auto processingChange = gsl::finally([this]()
+                {
+                    m_processingItemsSourceChange.set(nullptr);
+                });
+
             virtualLayout.OnItemsChangedCore(GetLayoutContext(), newValue, args);
         }
         else if (auto nonVirtualLayout = layout.try_as<winrt::NonVirtualizingLayout>())

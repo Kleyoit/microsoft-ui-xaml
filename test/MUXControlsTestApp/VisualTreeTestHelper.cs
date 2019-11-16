@@ -53,6 +53,48 @@ namespace Windows.UI.Xaml.Tests.MUXControls.ApiTests
         }
     }
 
+    // Useful for scenarios where you would want to run multiple Visual Tree Verifications without throwing an exception
+    public class VisualTreeVerifier: IDisposable
+    {
+        public bool hasFailed = false;
+
+        public void VerifyVisualTreeNoException(string xaml, string masterFilePrefix, Theme theme = Theme.None, IPropertyValueTranslator translator = null, IFilter filter = null, IVisualTreeLogger logger = null)
+        {
+            try
+            {
+                VisualTreeTestHelper.VerifyVisualTree(xaml, masterFilePrefix, theme, translator, filter, logger);
+            }
+            catch (Exception e)
+            {
+                Log.Error(e.Message);
+                hasFailed = true;
+            }
+        }
+
+        public void VerifyVisualTreeNoException(UIElement root, string masterFilePrefix, Theme theme = Theme.None, IPropertyValueTranslator translator = null, IFilter filter = null, IVisualTreeLogger logger = null)
+        {
+            try
+            {
+                VisualTreeTestHelper.VerifyVisualTree(root, masterFilePrefix, theme, translator, filter, logger);
+            }
+            catch (Exception e)
+            {
+                Log.Error(e.Message);
+                hasFailed = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            if(hasFailed)
+            {
+                Verify.Fail("Visual Tree Verification Failed.");
+            }
+        }
+
+    }
+
+
     public class VisualTreeTestHelper
     {
         // Log MasterFile to MusicLibrary or LocalFolder. By default(AlwaysLogMasterFile=false), It logs the master files to  LocalFolder. 

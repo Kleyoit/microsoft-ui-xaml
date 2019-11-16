@@ -231,14 +231,28 @@ void TabView::OnListViewLoaded(const winrt::IInspectable&, const winrt::RoutedEv
     if (auto listView = m_listView.get())
     {
         // Now that ListView exists, we can start using its Items collection.
-        auto items = TabItems();
-        auto numItemsToCopy = static_cast<int>(items.Size());
-        if (auto lvItems = listView.Items())
+        if (auto const lvItems = listView.Items())
         {
-            for (int i = 0; i < numItemsToCopy; i++)
+            if (!listView.ItemsSource())
             {
-                // App put items in our Items collection; copy them over to ListView.Items
-                lvItems.Append(items.GetAt(i));
+                // copy the list, because clearing lvItems may also clear TabItems
+                winrt::IVector<winrt::IInspectable> const itemList{ winrt::single_threaded_vector<winrt::IInspectable>() };
+
+                for (auto const item : TabItems())
+                {
+                    itemList.Append(item);
+                }
+
+                lvItems.Clear();
+
+                for (auto const item : itemList)
+                {
+                    // App put items in our Items collection; copy them over to ListView.Items
+                    if (item)
+                    {
+                        lvItems.Append(item);
+                    }
+                }
             }
             TabItems(lvItems);
         }
@@ -513,9 +527,6 @@ void TabView::UpdateTabWidths()
 {
     double tabWidth = std::numeric_limits<double>::quiet_NaN();
 
-    double minTabWidth = unbox_value<double>(SharedHelpers::FindResource(c_tabViewItemMinWidthName, winrt::Application::Current().Resources(), box_value(c_tabMinimumWidth)));
-    double maxTabWidth = unbox_value<double>(SharedHelpers::FindResource(c_tabViewItemMaxWidthName, winrt::Application::Current().Resources(), box_value(c_tabMaximumWidth)));
-
     if (auto tabGrid = m_tabContainerGrid.get())
     {
         // Add up width taken by custom content and + button
@@ -558,9 +569,12 @@ void TabView::UpdateTabWidths()
                 }
                 else if (TabWidthMode() == winrt::TabViewWidthMode::Equal)
                 {
+                    auto const minTabWidth = unbox_value<double>(SharedHelpers::FindResource(c_tabViewItemMinWidthName, winrt::Application::Current().Resources(), box_value(c_tabMinimumWidth)));
+                    auto const maxTabWidth = unbox_value<double>(SharedHelpers::FindResource(c_tabViewItemMaxWidthName, winrt::Application::Current().Resources(), box_value(c_tabMaximumWidth)));
+
                     // Calculate the proportional width of each tab given the width of the ScrollViewer.
-                    auto padding = Padding();
-                    double tabWidthForScroller = (availableWidth - (padding.Left + padding.Right)) / (double)(TabItems().Size());
+                    auto const padding = Padding();
+                    auto const tabWidthForScroller = (availableWidth - (padding.Left + padding.Right)) / (double)(TabItems().Size());
 
                     tabWidth = std::clamp(tabWidthForScroller, minTabWidth, maxTabWidth);
 
@@ -600,8 +614,6 @@ void TabView::UpdateTabWidths()
         if (tvi)
         {
             tvi.Width(tabWidth);
-            tvi.MaxWidth(maxTabWidth);
-            tvi.MinWidth(minTabWidth);
         }
     }
 }

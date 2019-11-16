@@ -13,19 +13,27 @@
     <FeatureAnimatedVisualPlayerEnabled>false</FeatureAnimatedVisualPlayerEnabled>
     <FeatureAutoSuggestBoxEnabled>false</FeatureAutoSuggestBoxEnabled>
     <FeatureCalendarDatePickerEnabled>false</FeatureCalendarDatePickerEnabled>
+    <FeatureCalendarViewEnabled>false</FeatureCalendarViewEnabled>
     <FeatureCheckBoxEnabled>false</FeatureCheckBoxEnabled>
+    <FeatureCollectionsEnabled>productOnly</FeatureCollectionsEnabled>
+    <FeatureColorPickerEnabled>false</FeatureColorPickerEnabled>
     <FeatureComboBoxEnabled>false</FeatureComboBoxEnabled>
     <FeatureCommandBarFlyoutEnabled>false</FeatureCommandBarFlyoutEnabled>
+    <FeatureCommonStylesEnabled>productOnly</FeatureCommonStylesEnabled>
+    <FeatureContentDialogEnabled>false</FeatureContentDialogEnabled>
     <FeatureDatePickerEnabled>false</FeatureDatePickerEnabled>
     <FeatureDropDownButtonEnabled>productOnly</FeatureDropDownButtonEnabled>
+    <FeatureEffectsEnabled>productOnly</FeatureEffectsEnabled>
     <FeatureFlipViewEnabled>false</FeatureFlipViewEnabled>
     <FeatureIconSourceEnabled>productOnly</FeatureIconSourceEnabled>
     <FeatureInteractionsEnabled>false</FeatureInteractionsEnabled>
     <FeatureLayoutPanelEnabled>false</FeatureLayoutPanelEnabled>
-    <FeatureRepeaterEnabled>productOnly</FeatureRepeaterEnabled>
+    <FeatureLightsEnabled>productOnly</FeatureLightsEnabled>
+    <FeatureMaterialsEnabled>productOnly</FeatureMaterialsEnabled>
     <FeatureMenuBarEnabled>false</FeatureMenuBarEnabled>
     <FeatureMenuFlyoutEnabled>false</FeatureMenuFlyoutEnabled>
     <FeatureNavigationViewEnabled>false</FeatureNavigationViewEnabled>
+    <FeatureNumberBoxEnabled>false</FeatureNumberBoxEnabled>
     <FeatureParallaxViewEnabled>false</FeatureParallaxViewEnabled>
     <FeaturePersonPictureEnabled>false</FeaturePersonPictureEnabled>
     <FeaturePivotEnabled>false</FeaturePivotEnabled>
@@ -33,11 +41,14 @@
     <FeatureRadioButtonsEnabled>true</FeatureRadioButtonsEnabled>
     <FeatureRadioMenuFlyoutItemEnabled>false</FeatureRadioMenuFlyoutItemEnabled>
     <FeatureRatingControlEnabled>false</FeatureRatingControlEnabled>
+    <FeatureRepeaterEnabled>false</FeatureRepeaterEnabled>
+    <FeatureResourceHelperEnabled>productOnly</FeatureResourceHelperEnabled>
     <FeatureScrollBarEnabled>false</FeatureScrollBarEnabled>
     <FeatureScrollerEnabled>false</FeatureScrollerEnabled>
     <FeatureScrollViewerEnabled>false</FeatureScrollViewerEnabled>
     <FeatureSliderEnabled>false</FeatureSliderEnabled>
     <FeatureSplitButtonEnabled>productOnly</FeatureSplitButtonEnabled>
+    <FeatureSplitViewEnabled>false</FeatureSplitViewEnabled>
     <FeatureSwipeControlEnabled>false</FeatureSwipeControlEnabled>
     <FeatureTabViewEnabled>false</FeatureTabViewEnabled>
     <FeatureTeachingTipEnabled>false</FeatureTeachingTipEnabled>
@@ -49,17 +60,23 @@
     <FeatureContentDialogEnabled>false</FeatureContentDialogEnabled>
     <FeatureCalendarViewEnabled>false</FeatureCalendarViewEnabled>
     <FeatureSplitViewEnabled>false</FeatureSplitViewEnabled>
+    <FeatureProgressBarEnabled>false</FeatureProgressBarEnabled>
   </PropertyGroup>
+  <!-- Import this after inner loop features are declared so that it overrides those properties -->
+  <Import Project="InnerLoopAreas.props" Condition="Exists('InnerLoopAreas.props') And $(SolutionName) == 'MUXControlsInnerLoop'"/>
   <!-- Features to include for official build (should be all features) -->
   <PropertyGroup Condition="$(SolutionName) != 'MUXControlsInnerLoop'">
     <FeatureAnimatedVisualPlayerEnabled>true</FeatureAnimatedVisualPlayerEnabled>
     <FeatureAutoSuggestBoxEnabled>true</FeatureAutoSuggestBoxEnabled>
     <FeatureCalendarDatePickerEnabled>true</FeatureCalendarDatePickerEnabled>
+    <FeatureCalendarViewEnabled>true</FeatureCalendarViewEnabled>
     <FeatureCheckBoxEnabled>true</FeatureCheckBoxEnabled>
     <FeatureCollectionsEnabled>true</FeatureCollectionsEnabled>
     <FeatureColorPickerEnabled>true</FeatureColorPickerEnabled>
     <FeatureComboBoxEnabled>true</FeatureComboBoxEnabled>
     <FeatureCommandBarFlyoutEnabled>true</FeatureCommandBarFlyoutEnabled>
+    <FeatureCommonStylesEnabled>true</FeatureCommonStylesEnabled>
+    <FeatureContentDialogEnabled>true</FeatureContentDialogEnabled>
     <FeatureDatePickerEnabled>true</FeatureDatePickerEnabled>
     <FeatureDropDownButtonEnabled>true</FeatureDropDownButtonEnabled>
     <FeatureEffectsEnabled>true</FeatureEffectsEnabled>
@@ -67,12 +84,12 @@
     <FeatureIconSourceEnabled>true</FeatureIconSourceEnabled>
     <FeatureInteractionsEnabled>true</FeatureInteractionsEnabled>
     <FeatureLayoutPanelEnabled>true</FeatureLayoutPanelEnabled>
-    <FeatureRepeaterEnabled>true</FeatureRepeaterEnabled>
     <FeatureLightsEnabled>true</FeatureLightsEnabled>
     <FeatureMaterialsEnabled>true</FeatureMaterialsEnabled>
     <FeatureMenuBarEnabled>true</FeatureMenuBarEnabled>
     <FeatureMenuFlyoutEnabled>true</FeatureMenuFlyoutEnabled>
     <FeatureNavigationViewEnabled>true</FeatureNavigationViewEnabled>
+    <FeatureNumberBoxEnabled>true</FeatureNumberBoxEnabled>
     <FeatureParallaxViewEnabled>true</FeatureParallaxViewEnabled>
     <FeaturePersonPictureEnabled>true</FeaturePersonPictureEnabled>
     <FeaturePivotEnabled>true</FeaturePivotEnabled>
@@ -80,12 +97,14 @@
     <FeatureRadioButtonsEnabled>true</FeatureRadioButtonsEnabled>
     <FeatureRadioMenuFlyoutItemEnabled>true</FeatureRadioMenuFlyoutItemEnabled>
     <FeatureRatingControlEnabled>true</FeatureRatingControlEnabled>
+    <FeatureRepeaterEnabled>true</FeatureRepeaterEnabled>
     <FeatureResourceHelperEnabled>true</FeatureResourceHelperEnabled>
     <FeatureScrollBarEnabled>true</FeatureScrollBarEnabled>
     <FeatureScrollerEnabled>true</FeatureScrollerEnabled>
     <FeatureScrollViewerEnabled>true</FeatureScrollViewerEnabled>
     <FeatureSliderEnabled>true</FeatureSliderEnabled>
     <FeatureSplitButtonEnabled>true</FeatureSplitButtonEnabled>
+    <FeatureSplitViewEnabled>true</FeatureSplitViewEnabled>
     <FeatureSwipeControlEnabled>true</FeatureSwipeControlEnabled>
     <FeatureTabViewEnabled>true</FeatureTabViewEnabled>
     <FeatureTeachingTipEnabled>true</FeatureTeachingTipEnabled>
@@ -97,6 +116,7 @@
     <FeatureContentDialogEnabled>true</FeatureContentDialogEnabled>
     <FeatureCalendarViewEnabled>true</FeatureCalendarViewEnabled>
     <FeatureSplitViewEnabled>true</FeatureSplitViewEnabled>
+    <FeatureProgressBarEnabled>true</FeatureProgressBarEnabled>
   </PropertyGroup>
   <PropertyGroup>
     <DefineConstants Condition="$(FeatureScrollerEnabled) =='true'">$(DefineConstants);FEATURE_SCROLLER_ENABLED</DefineConstants>
