@@ -22,11 +22,27 @@ public:
         winrt::NonVirtualizingLayoutContext const& context,
         winrt::Size const& finalSize);
 
-
     void OnColumnSpacingPropertyChanged(const winrt::DependencyPropertyChangedEventArgs&);
     void OnRowSpacingPropertyChanged(const winrt::DependencyPropertyChangedEventArgs&);
     void OnMaximumColumnsPropertyChanged(const winrt::DependencyPropertyChangedEventArgs&);
+
+    //Testhooks helpers, only function while m_testHooksEnabled == true
+    void SetTestHooksEnabled(bool enabled);
+    int GetRows();
+    int GetColumns();
+    int GetLargerColumns();
+    winrt::event_token LayoutChanged(winrt::TypedEventHandler<winrt::ColumnMajorUniformToLargestGridLayout, winrt::IInspectable> const& value);
+    void LayoutChanged(winrt::event_token const& token);
+
 private:
     winrt::Size LargestChildSize(const winrt::NonVirtualizingLayoutContext& context);
+
+    //Testhooks helpers, only function while m_testHooksEnabled == true
+    bool m_testHooksEnabled{ false };
+    winrt::event<winrt::TypedEventHandler<winrt::ColumnMajorUniformToLargestGridLayout, winrt::IInspectable>> m_layoutChangedEventSource;
+
+    int m_rows{ -1 };
+    int m_columns{ -1 };
+    int m_largerColumns{ -1 };
 };
 

@@ -98,6 +98,20 @@ winrt::Size ColumnMajorUniformToLargestGridLayout::ArrangeOverride(
             index++;
         }
 
+        if (m_testHooksEnabled)
+        {
+            //Testhooks setup
+            if (m_largerColumns != numberOfColumnsWithExtraElements ||
+                m_columns != column ||
+                m_rows != minitemsPerColumn)
+            {
+                m_largerColumns = numberOfColumnsWithExtraElements;
+                m_columns = column;
+                m_rows = minitemsPerColumn;
+
+                m_layoutChangedEventSource(*this, nullptr);
+            }
+        }
     }
     return finalSize;
 }
@@ -134,4 +148,36 @@ void ColumnMajorUniformToLargestGridLayout::OnRowSpacingPropertyChanged(const wi
 void ColumnMajorUniformToLargestGridLayout::OnMaximumColumnsPropertyChanged(const winrt::DependencyPropertyChangedEventArgs&)
 {
     InvalidateMeasure();
+}
+
+//Testhooks helpers, only function while m_testHooksEnabled == true
+
+void ColumnMajorUniformToLargestGridLayout::SetTestHooksEnabled(bool enabled)
+{
+    m_testHooksEnabled = enabled;
+}
+
+int ColumnMajorUniformToLargestGridLayout::GetRows()
+{
+    return m_rows;
+}
+
+int ColumnMajorUniformToLargestGridLayout::GetColumns()
+{
+    return m_columns;
+}
+
+int ColumnMajorUniformToLargestGridLayout::GetLargerColumns()
+{
+    return m_largerColumns;
+}
+
+winrt::event_token ColumnMajorUniformToLargestGridLayout::LayoutChanged(winrt::TypedEventHandler<winrt::ColumnMajorUniformToLargestGridLayout, winrt::IInspectable> const& value)
+{
+    return m_layoutChangedEventSource.add(value);
+}
+
+void ColumnMajorUniformToLargestGridLayout::LayoutChanged(winrt::event_token const& token)
+{
+    m_layoutChangedEventSource.remove(token);
 }

@@ -7,15 +7,13 @@
 
 #include "RadioButtons.g.h"
 #include "RadioButtons.properties.h"
+#include "ColumnMajorUniformToLargestGridLayout.h"
 
 class ChildHandlers : public winrt::implements<ChildHandlers, winrt::IInspectable>
 {
 public:
     winrt::ToggleButton::Checked_revoker checkedRevoker;
     winrt::ToggleButton::Unchecked_revoker uncheckedRevoker;
-    winrt::ToggleButton::KeyDown_revoker keyDownRevoker;
-    winrt::ToggleButton::PreviewKeyDown_revoker previewKeyDownRevoker;
-    winrt::ToggleButton::GotFocus_revoker gotFocusRevoker;
 };
 
 class RadioButtons :
@@ -25,7 +23,6 @@ class RadioButtons :
 
 public:
     RadioButtons();
-
     // IFrameworkElement
     void OnApplyTemplate();
 
@@ -36,8 +33,15 @@ public:
 
     GlobalDependencyProperty s_childHandlersProperty{ nullptr };
 
+    //Test hooks helpers, only function while m_testHooksEnabled = true
+    void SetTestHooksEnabled(bool enabled);
+    ~RadioButtons();
+    int GetRows();
+    int GetColumns();
+    int GetLargerColumns();
+
 private:
-    enum MissStrategy
+    enum class MissStrategy
     {
         next,
         previous,
@@ -45,12 +49,15 @@ private:
         aroundRight,
     };
 
+    void OnGettingFocus(const winrt::IInspectable&, const winrt::GettingFocusEventArgs& args);
     void OnRepeaterLoaded(const winrt::IInspectable&, const winrt::RoutedEventArgs&);
-    void OnRepeaterKeyDown(const winrt::IInspectable&, const winrt::KeyRoutedEventArgs& args);
-    void OnRepeaterKeyUp(const winrt::IInspectable&, const winrt::KeyRoutedEventArgs& args);
+    void KeyDownHandler(const winrt::IInspectable&, const winrt::KeyRoutedEventArgs& args);
+    void KeyUpHandler(const winrt::IInspectable&, const winrt::KeyRoutedEventArgs& args);
     void OnRepeaterElementPrepared(const winrt::ItemsRepeater&, const winrt::ItemsRepeaterElementPreparedEventArgs& args);
     void OnRepeaterElementClearing(const winrt::ItemsRepeater&, const winrt::ItemsRepeaterElementClearingEventArgs& args);
-    void OnRepeaterCollectionChanged(const winrt::ItemsSourceView&, const winrt::IInspectable&);
+    void OnRepeaterElementIndexChanged(const winrt::ItemsRepeater&, const winrt::ItemsRepeaterElementIndexChangedEventArgs& args);
+    void OnRepeaterCollectionChanged(const winrt::IInspectable&, const winrt::IInspectable&);
+    void OnSelectionChanged(const winrt::IInspectable&, const winrt::SelectionModelSelectionChangedEventArgs& args);
     void OnChildChecked(const winrt::IInspectable& sender, const winrt::RoutedEventArgs& args);
     void OnChildUnchecked(const winrt::IInspectable& sender, const winrt::RoutedEventArgs& args);
     void OnChildKeyDown(const winrt::IInspectable& sender, const winrt::KeyRoutedEventArgs& args);
@@ -63,11 +70,13 @@ private:
     void UpdateSelectedItem();
     void UpdateSelectedIndex();
 
-    bool MoveSelectionNext();
-    bool MoveSelectionPrevious();
-    bool MoveSelectionRight(const winrt::UIElement& focusedElement);
-    bool MoveSelectionLeft(const winrt::UIElement& focusedElement);
-    bool MoveSelection(int initialIndexIncrement, MissStrategy missStrategy);
+    void UpdateSelectionDPs(const int newIndex);
+
+    bool MoveFocusNext();
+    bool MoveFocusPrevious();
+    bool MoveFocusRight(const winrt::UIElement& focusedElement);
+    bool MoveFocusLeft(const winrt::UIElement& focusedElement);
+    bool MoveFocus(int initialIndexIncrement, MissStrategy missStrategy);
     static std::tuple<bool, int, int> GetNextIndex(
         MissStrategy missStrategy,
         int focusedIndex,
@@ -84,19 +93,25 @@ private:
     static int IncrementForHorizontalMove(int index, int itemCount, int maxColumns, int numberOfSmallerColumnsToAccept);
 
     bool m_isControlDown{ false };
-    int m_selectedIndex{ -1 };
 
     tracker_ref<winrt::ItemsRepeater> m_repeater{ this };
 
     winrt::SelectionModel m_selectionModel{};
+    winrt::SelectionModel::SelectionChanged_revoker m_selectionChangedRevoker{};
     winrt::Control::Loaded_revoker m_repeaterLoadedRevoker{};
-    winrt::Control::KeyDown_revoker m_repeaterKeyDownRevoker{};
-    winrt::Control::KeyUp_revoker m_repeaterKeyUpRevoker{};
     winrt::ItemsSourceView::CollectionChanged_revoker m_itemsSourceChanged{};
     winrt::ItemsRepeater::ElementPrepared_revoker m_repeaterElementPreparedRevoker{};
     winrt::ItemsRepeater::ElementClearing_revoker m_repeaterElementClearingRevoker{};
+    winrt::ItemsRepeater::ElementIndexChanged_revoker m_repeaterElementIndexChangedRevoker{};
 
-    std::vector<ChildHandlers> m_childHandlers{};
+    //Test hooks helpers, only function while m_testHooksEnabled == true
+    bool m_testHooksEnabled{ false };
+    void OnLayoutChanged(const winrt::ColumnMajorUniformToLargestGridLayout&, const winrt::IInspectable&);
+    winrt::event_token m_layoutChangedToken{};
+    void AttachToLayoutChanged();
+    void DetatchFromLayoutChanged();
+    ColumnMajorUniformToLargestGridLayout* GetLayout();
 
-    winrt::IInspectable m_pointerPressedEventHandler{ nullptr };
+    static constexpr wstring_view s_repeaterName{ L"InnerRepeater"sv };
+    static constexpr wstring_view s_childHandlersPropertyName{ L"ChildHandlers"sv };
 };
